@@ -1,0 +1,28 @@
+{
+  "name": "texnomic.blazor.jsonviewer",
+  "version": "0.1.0",
+  "description": "ASP.NET Core JsonViewer Component for Server-Side Blazor Based-on Alenaksu's Json-Viewer.",
+  "main": "index.js",
+  "dependencies": {
+    "@alenaksu/json-viewer": "^0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"build": "browserify index.js > JsonViewer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Texnomic/JsonViewer.git"
+  },
+  "keywords": [
+    "blazor",
+    "json"
+  ],
+  "author": "Texnomic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Texnomic/JsonViewer/issues"
+  },
+  "homepage": "https://github.com/Texnomic/JsonViewer/blob/master/README.md"
+}

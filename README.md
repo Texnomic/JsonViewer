@@ -18,21 +18,23 @@ PM> Install-Package Texnomic.Blazor.JsonViewer
 
     ```html
     <head>
-        <script src="_content/Texnomic.Blazor.JsonViewer/src/index.min.js" type="text/javascript"></script>
-        <script src="_content/Texnomic.Blazor.JsonViewer/src/util.min.js" type="text/javascript"></script>
-        <script src="_content/Texnomic.Blazor.JsonViewer/src/JsonViewer.js" type="text/javascript"></script>
+       <script src="_content/Texnomic.Blazor.JsonViewer/scripts/JsonViewer.js" type="text/javascript"></script>
     </head>
     ```
 
 2. Drop-In JsonViewer Component & Bind Element Reference In `Example.razor` File:
 
     ```html
+    @using Texnomic.Blazor.JsonViewer
+
     <JsonViewer @ref="JsonViewerInstance"></JsonViewer>
     ```
 
 3. Create Backing Element Reference In `Example.razor.cs` File:
 
     ```csharp
+    using Texnomic.Blazor.JsonViewer;
+
     protected JsonViewer JsonViewerInstance { get; set; }
 
     protected async ValueTask Example(string Json)
