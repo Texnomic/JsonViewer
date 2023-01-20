@@ -1,35 +1,41 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RazorLangVersion>3.0</RazorLangVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
-    <Authors>Texnomic</Authors>
-    <Company>Texnomic Ltd</Company>
-    <Description>ASP.NET Core JsonViewer Component for Server-Side Blazor Based-on Alenaksu's Json-Viewer
-https://github.com/alenaksu/json-viewer</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>Copyright 2020</Copyright>
-    <PackageProjectUrl>https://github.com/Texnomic/JsonViewer</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Texnomic/JsonViewer</RepositoryUrl>
-    <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>Json Blazor</PackageTags>
-    <PackageIcon>Logo.png</PackageIcon>
-  </PropertyGroup>
-
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.5" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>0.2.0</Version>
+		<Authors>Texnomic</Authors>
+		<Company>Texnomic Ltd</Company>
+		<Description>
+			ASP.NET Core JsonViewer Component for Blazor Based-on Alenaksu's Json-Viewer
+			https://github.com/alenaksu/json-viewer
+		</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Copyright 2023</Copyright>
+		<PackageProjectUrl>https://github.com/Texnomic/JsonViewer</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Texnomic/JsonViewer</RepositoryUrl>
+		<RepositoryType>GitHub</RepositoryType>
+		<PackageTags>Json Blazor</PackageTags>
+		<PackageIcon>Logo.png</PackageIcon>
+	</PropertyGroup>
 
 
-  <ItemGroup>
-    <None Include="..\Logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\Logo.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
