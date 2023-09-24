@@ -1,46 +1,50 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+﻿namespace Texnomic.Blazor.JsonViewer;
 
-namespace Texnomic.Blazor.JsonViewer;
-
-public partial class JsonViewer : ComponentBase
+public partial class JsonViewer : ComponentBase, IAsyncDisposable
 {
-    [Inject] protected IJSRuntime JsRuntime { get; set; }
+    [Inject]
+    public IJSRuntime JsRuntime { get; set; }
 
-    public string Id { get; private set; }
+    private IJSObjectReference LibraryReference;
 
-    public JsonViewer()
+    private IJSObjectReference InstanceReference;
+
+    public string Id { get; } = $"TJV{Random.Shared.Next()}";
+
+    protected override async Task OnAfterRenderAsync(bool FirstRender)
     {
-        Id = Guid.NewGuid().ToString().Replace("-", "");
+        if (FirstRender)
+        {
+            LibraryReference = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "https://unpkg.com/@alenaksu/json-viewer@2.0.0/dist/json-viewer.bundle.js");
+
+            InstanceReference = await JsRuntime.InvokeAsync<IJSObjectReference>("document.querySelector", $"'#{Id}'");
+        }
     }
 
-    public ValueTask Render(string json)
-    {
-        return JsRuntime.InvokeVoidAsync("Texnomic.Blazor.JsonViewer.SetData", Id, json);
-    }
+    public ValueTask Render(string Json)
+        => JsRuntime.InvokeVoidAsync("eval", $"document.querySelector('#{Id}').data = {Json};");
 
-    public ValueTask Collapse(string filter)
-    {
-        return JsRuntime.InvokeVoidAsync("Texnomic.Blazor.JsonViewer.Collapse", Id, filter);
-    }
+    public ValueTask Collapse(string Filter)
+        => InstanceReference.InvokeVoidAsync("collapse", Filter);
 
     public ValueTask CollapseAll()
-    {
-        return Collapse("**");
-    }
+        => Collapse("**");
 
-    public ValueTask Expand(string filter)
-    {
-        return JsRuntime.InvokeVoidAsync("Texnomic.Blazor.JsonViewer.Expand", Id, filter);
-    }
+    public ValueTask Expand(string Filter)
+        => InstanceReference.InvokeVoidAsync("expand", Filter);
 
     public ValueTask ExpandAll()
-    {
-        return Expand("**");
-    }
+        => Expand("**");
 
-    public ValueTask Filter(string filter)
+    public ValueTask Filter(string Filter)
+        => InstanceReference.InvokeVoidAsync("filter", Filter);
+
+    public async ValueTask DisposeAsync()
     {
-        return JsRuntime.InvokeVoidAsync("Texnomic.Blazor.JsonViewer.Filter", Id, filter);
+        if (InstanceReference != null)
+            await InstanceReference.DisposeAsync();
+
+        if (InstanceReference != null)
+            await LibraryReference.DisposeAsync();
     }
 }
