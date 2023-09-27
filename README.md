@@ -18,6 +18,7 @@ PM> Install-Package Texnomic.Blazor.JsonViewer
 
     ```html
     <head>
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
        <script src="_content/Texnomic.Blazor.JsonViewer/scripts/JsonViewer.js" type="text/javascript"></script>
     </head>
     ```
